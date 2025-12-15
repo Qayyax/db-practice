@@ -9,7 +9,7 @@ import { DatabaseSync } from "node:sqlite";
 const getPostsByAuthor = (db, author) => {
   try {
     const authorPosts = db.prepare(`SELECT * FROM books 
-WHERE author = '${author}'`);
+WHERE LOWER(author) = LOWER('${author}')`);
     return authorPosts.all();
   } catch (err) {
     console.log("=====================");

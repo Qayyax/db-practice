@@ -17,14 +17,14 @@ test("Returns array of objects per id", () => {
 });
 
 test("Returns array of books with certain title", () => {
-  const result = getPostByTitle(db, "The Orchard Archivist");
+  const result = getPostByTitle(db, "The orChaRd Archivist");
   const bookTitle = result[0]?.title;
-  assert.strictEqual(bookTitle, "The Orchard Archivist");
+  assert.strictEqual(bookTitle.toLowerCase(), "the orchard archivist");
 });
 
 test("Returns array of books with certain author", () => {
-  const result = getPostsByAuthor(db, "Miriam Ochoa");
+  const result = getPostsByAuthor(db, "miRiam ochoa");
   const bookAuthor = result[0]?.author;
   console.log(bookAuthor);
-  assert.strictEqual(bookAuthor, "Miriam Ochoa");
+  assert.strictEqual(bookAuthor.toLowerCase(), "miriam ochoa");
 });

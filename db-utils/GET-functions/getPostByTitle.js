@@ -9,7 +9,7 @@ import { DatabaseSync } from "node:sqlite";
 const getPostByTitle = (db, title) => {
   try {
     const titlePosts = db.prepare(`SELECT * FROM books 
-WHERE title = '${title}'`);
+WHERE LOWER(title) = LOWER('${title}')`);
     return titlePosts.all();
   } catch (err) {
     console.log("=====================");
