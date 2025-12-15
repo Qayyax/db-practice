@@ -93,3 +93,14 @@ INSERT INTO guests VALUES (
 -- You can even query the JSON data
 SELECT name FROM guests, json_each(likes) WHERE json_each.value = 'oranges';
 ```
+
+## Alter table to add new column in SQLite
+
+```sql
+ALTER TABLE table_name
+ADD COLUMN column_name column_definition
+
+-- example
+ALTER TABLE books
+ADD COLUMN created_at TEXT;
+```
