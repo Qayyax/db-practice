@@ -1,5 +1,6 @@
 import posts from "./data.js";
 import { DatabaseSync } from "node:sqlite";
+import getPostByTitle from "./db-utils/GET-functions/getPostByTitle.js";
 
 /**
  * @typedef {Object} Query
@@ -17,16 +18,13 @@ export const getPostQuery = (db, query) => {
   const { title, author, tags } = query;
 
   const emptyArrayBitches = [];
-  // using sql
-  // Select from books where title == title
   // Select from books where author == author
   // Select from books where tags, would have to think about this one
   if (title) {
-    // I would make a function that get's post by title
     // emptyArrayBitches.push(
     //   (post, ...args) => post.title.toLowerCase() === title.toLowerCase(),
     // );
-    // const titlePosts = db.prepare(`SELECT * FROM books where title`)
+    // getPostByTitle
   }
   if (author) {
     emptyArrayBitches.push(
