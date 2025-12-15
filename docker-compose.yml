@@ -1,0 +1,10 @@
+services:
+  sqlite:
+    image: hibitdev/sqlite:latest
+    container_name: sqlite_practice
+    hostname: sqlite.qayyax
+    ports:
+      - "8191:8191"
+    volumes:
+      - ./sqlite_practice:/db
+    command: ["tail", "-f", "/dev/null"]
