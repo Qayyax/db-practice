@@ -1,6 +1,20 @@
-// This is the one I don't know how to implement since this is what tags looks like,
-// tags ["fantasy","mystery"]
-// But I would google it though
-// I want to get posts from the database with similar tags
-// One other thing I am not doing is checking for case sensitivity
-// I don't know if sql handles that
+import { DatabaseSync } from "node:sqlite";
+
+/**
+ * @param {DatabaseSync} db - The SQLite database object
+ * @param {string} tag - the Tag we want to search for
+ * @returns {[Object]} Would return an array of books with similar tags
+ */
+const getPostByTags = (db, tag) => {
+  try {
+    const booksByTags = db.prepare(`
+SELECT * FROM books, json_each(tags)
+WHERE json_each.value = '${tag}'
+`);
+    return booksByTags;
+  } catch (err) {
+    return [];
+  }
+};
+
+export default getPostByTags;
