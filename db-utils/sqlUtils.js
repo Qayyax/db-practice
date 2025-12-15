@@ -15,10 +15,6 @@ export const db = new DatabaseSync(DBPATH);
 // )
 // `);
 
-// db.exec(`INSERT INTO books (title, slug, content, author)
-// VALUES ('The book of Adam', 'the-book-of-adam', 'This is the story of the first time that Adam saw his private area, and thought he was naked, I wonder why he was though', 'Qayyax the great' )
-// `);
-
 // const testBook = db.prepare(
 //   `SELECT * FROM books WHERE author = 'Qayyax the great'`,
 // );

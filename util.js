@@ -22,6 +22,7 @@ export const getPostQuery = (db, query) => {
   // Select from books where author == author
   // Select from books where tags, would have to think about this one
   if (title) {
+    // I would make a function that get's post by title
     // emptyArrayBitches.push(
     //   (post, ...args) => post.title.toLowerCase() === title.toLowerCase(),
     // );
