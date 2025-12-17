@@ -5,6 +5,7 @@ import { getPostAtId } from "../util.js";
 import { db } from "../db-utils/sqlUtils.js";
 import getPostByTitle from "../db-utils/GET-functions/getPostByTitle.js";
 import getPostsByAuthor from "../db-utils/GET-functions/getPostByAuthor.js";
+import getPostByTags from "../db-utils/GET-functions/getPostsByTags.js";
 
 test("Returns array of objects per id", () => {
   const result = getPostAtId(1, db);
@@ -25,6 +26,11 @@ test("Returns array of books with certain title", () => {
 test("Returns array of books with certain author", () => {
   const result = getPostsByAuthor(db, "miRiam ochoa");
   const bookAuthor = result[0]?.author;
-  console.log(bookAuthor);
   assert.strictEqual(bookAuthor.toLowerCase(), "miriam ochoa");
+});
+
+test("Return array of books that contains certain tags", () => {
+  const result = getPostByTags(db, "sci-fi");
+  console.log("########");
+  console.log(result);
 });

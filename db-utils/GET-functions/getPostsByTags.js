@@ -3,7 +3,7 @@ import { DatabaseSync } from "node:sqlite";
 /**
  * @param {DatabaseSync} db - The SQLite database object
  * @param {string} tag - the Tag we want to search for
- * @returns {[Object]} Would return an array of books with similar tags
+ * @returns {[Object] | null} Would return an array of books with similar tags
  */
 const getPostByTags = (db, tag) => {
   try {
@@ -13,8 +13,9 @@ WHERE json_each.value = '${tag}'
 `);
     return booksByTags;
   } catch (err) {
-    return [];
+    console.log(err);
   }
+  return null;
 };
 
 export default getPostByTags;
