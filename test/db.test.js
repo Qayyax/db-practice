@@ -6,6 +6,7 @@ import { db } from "../db-utils/sqlUtils.js";
 import getPostByTitle from "../db-utils/GET-functions/getPostByTitle.js";
 import getPostsByAuthor from "../db-utils/GET-functions/getPostByAuthor.js";
 import getPostByTags from "../db-utils/GET-functions/getPostsByTags.js";
+import getAllPosts from "../db-utils/GET-functions/getAllPosts.js";
 
 test("Returns array of objects per id", () => {
   const result = getPostAtId(1, db);
@@ -37,4 +38,9 @@ test("Return array of books that contains certain tags", () => {
     true,
     "Should be true if sci-fi exist",
   );
+});
+
+test("Returns all books", () => {
+  const result = getAllPosts(db);
+  assert.strictEqual(result.length > 0, true, "Should be an array of books");
 });

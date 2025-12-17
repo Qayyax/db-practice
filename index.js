@@ -37,6 +37,7 @@ app.get("/api/posts", (req, res) => {
     const newObject = getPostQuery(posts, req.query);
     res.send(newObject);
   } else {
+    // TODO:
     res.send(posts);
   }
 });

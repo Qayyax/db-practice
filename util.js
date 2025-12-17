@@ -33,6 +33,7 @@ export const getPostQuery = (db, query) => {
       emptyArrayBitches.push(...getPostByTags(db, tag));
     });
   }
+  return emptyArrayBitches;
 };
 
 /**
