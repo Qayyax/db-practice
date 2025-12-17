@@ -8,14 +8,17 @@ import { DatabaseSync } from "node:sqlite";
 const getPostByTags = (db, tag) => {
   try {
     const booksByTags = db.prepare(`
-SELECT * FROM books, json_each(tags)
-WHERE json_each.value = '${tag}'
+SELECT books.*
+FROM books
+JOIN json_each(books.tags) AS tags on tags.value = '${tag}'
 `);
-    return booksByTags;
+    return booksByTags.all();
   } catch (err) {
     console.log(err);
   }
   return null;
 };
+
+// Lets fucking gooo, I still don't understand much of this though
 
 export default getPostByTags;
