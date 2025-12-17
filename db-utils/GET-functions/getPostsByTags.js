@@ -16,7 +16,7 @@ JOIN json_each(books.tags) AS tags on tags.value = '${tag}'
   } catch (err) {
     console.log(err);
   }
-  return null;
+  return [];
 };
 
 // Lets fucking gooo, I still don't understand much of this though

@@ -1,6 +1,8 @@
 import posts from "./data.js";
 import { DatabaseSync } from "node:sqlite";
 import getPostByTitle from "./db-utils/GET-functions/getPostByTitle.js";
+import getPostsByAuthor from "./db-utils/GET-functions/getPostByAuthor.js";
+import getPostByTags from "./db-utils/GET-functions/getPostsByTags.js";
 
 /**
  * @typedef {Object} Query
@@ -21,27 +23,16 @@ export const getPostQuery = (db, query) => {
   // Select from books where author == author
   // Select from books where tags, would have to think about this one
   if (title) {
-    // emptyArrayBitches.push(
-    //   (post, ...args) => post.title.toLowerCase() === title.toLowerCase(),
-    // );
-    // getPostByTitle
+    emptyArrayBitches.push(...getPostByTitle(db, title));
   }
   if (author) {
-    emptyArrayBitches.push(
-      (post, ...args) => post.author.toLowerCase() === author.toLowerCase(),
-    );
+    emptyArrayBitches.push(...getPostsByAuthor(db, author));
   }
   if (tags) {
-    emptyArrayBitches.push((post, ...args) => {
-      const queryTags = Array.isArray(tags) ? tags : [tags];
-      return post.tags.some((tag) => queryTags.includes(tag));
+    tags.forEach((tag) => {
+      emptyArrayBitches.push(...getPostByTags(db, tag));
     });
   }
-  let $data = data;
-  for (const fn of emptyArrayBitches) {
-    $data = $data.filter(fn);
-  }
-  return $data;
 };
 
 /**
