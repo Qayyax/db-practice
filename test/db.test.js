@@ -31,6 +31,10 @@ test("Returns array of books with certain author", () => {
 
 test("Return array of books that contains certain tags", () => {
   const result = getPostByTags(db, "sci-fi");
-  console.log("########");
-  console.log(result);
+  const bookTags = result[0]?.tags ?? "unknown";
+  assert.strictEqual(
+    bookTags.includes("sci-fi"),
+    true,
+    "Should be true if sci-fi exist",
+  );
 });

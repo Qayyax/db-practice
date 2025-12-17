@@ -79,6 +79,8 @@ VALUES(datetime('now'),datetime('now', 'localtime'));
 
 ## Storing array of texts in SQLite
 
+> <https://www.sqlitetutorial.net/sqlite-json-functions/sqlite-json_each-function/>
+
 ```sql
 CREATE TABLE guests (
     name TEXT,
