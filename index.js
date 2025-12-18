@@ -31,10 +31,12 @@ app.get("/api/posts/:id", (req, res) => {
   res.send(postAtId);
 });
 
-// []
+// [x]
 app.get("/api/posts", (req, res) => {
   console.log(req.query);
   if (Object.keys(req.query).length > 0) {
+    // One major bug
+    // returning multiple books objects
     const newObject = getPostQuery(db, req.query);
     res.send(newObject);
   } else {
@@ -51,6 +53,8 @@ app.get("/api/posts", (req, res) => {
 
 // POST methods
 
+// TODO:
+//[]
 app.post("/api/posts", (req, res) => {
   const requiredKeys = ["title", "content", "author", "tags"];
   const isRequestValid = requiredKeys.every((key) =>
