@@ -17,6 +17,7 @@ SELECT * FROM books
     console.error(err);
     console.log("=====================");
   }
+  return [];
 };
 
 export default getAllPosts;

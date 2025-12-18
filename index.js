@@ -9,6 +9,7 @@ import {
 } from "./util.js";
 
 import { db } from "./db-utils/sqlUtils.js";
+import getAllPosts from "./db-utils/GET-functions/getAllPosts.js";
 
 const app = express();
 const PORT = 3000;
@@ -34,11 +35,17 @@ app.get("/api/posts/:id", (req, res) => {
 app.get("/api/posts", (req, res) => {
   console.log(req.query);
   if (Object.keys(req.query).length > 0) {
-    const newObject = getPostQuery(posts, req.query);
+    const newObject = getPostQuery(db, req.query);
     res.send(newObject);
   } else {
-    // TODO:
-    res.send(posts);
+    const allPost = getAllPosts(db);
+    if (allPost.length > 0) {
+      res.send(allPost);
+    } else {
+      return res.status(404).send({
+        message: "Resource does't exist yet",
+      });
+    }
   }
 });
 

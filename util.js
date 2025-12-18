@@ -20,8 +20,6 @@ export const getPostQuery = (db, query) => {
   const { title, author, tags } = query;
 
   const emptyArrayBitches = [];
-  // Select from books where author == author
-  // Select from books where tags, would have to think about this one
   if (title) {
     emptyArrayBitches.push(...getPostByTitle(db, title));
   }
@@ -29,9 +27,13 @@ export const getPostQuery = (db, query) => {
     emptyArrayBitches.push(...getPostsByAuthor(db, author));
   }
   if (tags) {
-    tags.forEach((tag) => {
-      emptyArrayBitches.push(...getPostByTags(db, tag));
-    });
+    if (tags.length > 1) {
+      tags.forEach((tag) => {
+        emptyArrayBitches.push(...getPostByTags(db, tag));
+      });
+    } else {
+      emptyArrayBitches.push(...getPostByTags(db, tags));
+    }
   }
   return emptyArrayBitches;
 };
