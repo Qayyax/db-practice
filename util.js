@@ -27,7 +27,7 @@ export const getPostQuery = (db, query) => {
     emptyArrayBitches.push(...getPostsByAuthor(db, author));
   }
   if (tags) {
-    if (tags.length > 1) {
+    if (Array.isArray(tags)) {
       tags.forEach((tag) => {
         emptyArrayBitches.push(...getPostByTags(db, tag));
       });
