@@ -2,10 +2,10 @@ import express from "express";
 import posts from "./data.js";
 import {
   getPostQuery,
-  newPostExtraData,
   getPostAtId,
   getIndexOfPostAtId,
   deletePostById,
+  getSlugForTitle,
 } from "./util.js";
 
 import { db } from "./db-utils/sqlUtils.js";
@@ -68,10 +68,10 @@ app.post("/api/posts", (req, res) => {
     });
   }
 
-  const { id, slug, created_at } = newPostExtraData(req.body.title);
+  // won't be needing this
+  const slug = getSlugForTitle(req.body.title);
   const newPost = { ...req.body, id, slug, created_at };
-  posts.push(newPost); // instead of push, I want to adjust the file and put it put it there, would save that for when I connect to databases
-
+  posts.push(newPost);
   res.status(201).send({
     message: "Created new post",
     newPostCreated: newPost,

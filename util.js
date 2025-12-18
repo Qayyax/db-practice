@@ -39,24 +39,12 @@ export const getPostQuery = (db, query) => {
 };
 
 /**
- * This returns an object for the new post
+ * This returns a slug based on the title
  * @param {string} title - Title of the post used to make the slug for the new post
- * @typedef {Object} PostData
- * @property {string} slug - slug based on title of post
- * @property {number} id - id of new post based on last id
- * @property {Date} created_at - time the new post was created
- * @returns {PostData}
+ * @returns {string}
  */
-export const newPostExtraData = (title) => {
-  const lastPostId = posts.at(-1).id + 1;
-  const now = new Date();
-  const createdDate = now.toISOString();
-
-  return {
-    id: lastPostId,
-    slug: title.replaceAll(" ", "-").toLowerCase(),
-    created_at: createdDate,
-  };
+export const getSlugForTitle = (title) => {
+  return title.replaceAll(" ", "-").toLowerCase();
 };
 
 /**
