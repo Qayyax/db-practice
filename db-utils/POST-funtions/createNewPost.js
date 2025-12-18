@@ -1,5 +1,5 @@
 import { DatabaseSync } from "node:sqlite";
-import { getSlugForTitle } from "../../util";
+import { getSlugForTitle } from "../../util.js";
 /**
  * @typedef {Object} Book
  * @property {string} title - title of the book
@@ -16,8 +16,10 @@ const createNewPost = (db, bookData) => {
   const slug = getSlugForTitle(title);
   const newPostQuerry = db.prepare(`
 INSERT INTO books (title, slug, content, author, tags, created_at)
-VALUES('${title}', '${slug}', '${content}', '${author}', json('${tags}'), datetime('now'))
+VALUES(?, ?, ?, ?, json(?), datetime('now'))
 `);
+  newPostQuerry.run(title, slug, content, author, JSON.stringify(tags));
+  // '${title}', '${slug}', '${content}', '${author}', json('${tags}'
   return newPostQuerry.all();
 };
 
