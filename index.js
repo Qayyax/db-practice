@@ -53,8 +53,7 @@ app.get("/api/posts", (req, res) => {
 
 // POST methods
 
-// TODO:
-//[]
+//[x]
 app.post("/api/posts", (req, res) => {
   const requiredKeys = ["title", "content", "author", "tags"];
   const isRequestValid = requiredKeys.every((key) =>
@@ -76,6 +75,8 @@ app.post("/api/posts", (req, res) => {
   });
 });
 
+// TODO:
+// []
 // PUT method
 app.put("/api/posts/:id", (req, res) => {
   const postId = req.params.id;
@@ -112,6 +113,8 @@ app.put("/api/posts/:id", (req, res) => {
 });
 
 // DELETE
+// TODO:
+// []
 app.delete("/api/posts/:id", (req, res) => {
   const postId = req.params.id;
   const deletedPost = deletePostById(postId);
