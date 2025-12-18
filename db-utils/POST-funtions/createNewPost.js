@@ -19,6 +19,6 @@ INSERT INTO books (title, slug, content, author, tags, created_at)
 VALUES('${title}', '${slug}', '${content}', '${author}', json('${tags}'), datetime('now'))
 `);
   return newPostQuerry.all();
-  // Normally I should write test for this, but  didn't make a mock db to test   it on.
-  // You can call this skill issues
 };
+
+export default createNewPost;

@@ -5,11 +5,11 @@ import {
   getPostAtId,
   getIndexOfPostAtId,
   deletePostById,
-  getSlugForTitle,
 } from "./util.js";
 
 import { db } from "./db-utils/sqlUtils.js";
 import getAllPosts from "./db-utils/GET-functions/getAllPosts.js";
+import createNewPost from "./db-utils/POST-funtions/createNewPost.js";
 
 const app = express();
 const PORT = 3000;
@@ -68,10 +68,8 @@ app.post("/api/posts", (req, res) => {
     });
   }
 
-  // won't be needing this
-  const slug = getSlugForTitle(req.body.title);
-  const newPost = { ...req.body, id, slug, created_at };
-  posts.push(newPost);
+  const { title, author, tags, content } = req.body;
+  const newPost = createNewPost(db, { title, author, tags, content });
   res.status(201).send({
     message: "Created new post",
     newPostCreated: newPost,
