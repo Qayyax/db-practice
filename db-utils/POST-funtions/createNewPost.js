@@ -19,7 +19,6 @@ INSERT INTO books (title, slug, content, author, tags, created_at)
 VALUES(?, ?, ?, ?, json(?), datetime('now'))
 `);
   newPostQuerry.run(title, slug, content, author, JSON.stringify(tags));
-  // '${title}', '${slug}', '${content}', '${author}', json('${tags}'
   return newPostQuerry.all();
 };
 
